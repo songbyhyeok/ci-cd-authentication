@@ -8,15 +8,36 @@
 - Spring Security를 통한 인증 및 인가 구현, JWT Token과 OAuth 2.0을 이용한 인증 방식 적용
 
 ## 기술 스택
-Java 17(Gradle)
-Spring(Boot, Security, Thymeleaf)
-JPA
-MySQL
-Swagger
-GitHub Actions
-Ubuntu
-Docker
-AWS(EC2, RDS)
+### Back-end
+<table border="1">
+  <tr>
+    <td>Java 17(Gradle)</td>
+    <td>Spring(Boot, MVC, Security)</td>
+    <td>JPA</td>
+    <td>MySQL</td>
+  </tr>
+</table>
+
+### Front-end
+<table border="1">
+  <tr>
+    <td>JavaScript</td>
+    <td>HTML</td>
+    <td>CSS</td>
+    <td>Spring Thymeleaf</td>
+  </tr>
+</table>
+
+### DevOps
+<table border="1">
+  <tr>
+    <td>AWS(EC2, RDS)</td>
+    <td>GitHub Actions</td>
+    <td>Swagger</td>
+    <td>Docker</td>
+    <td>Ubuntu</td>
+  </tr>
+</table>
 
 ## 목업
 
