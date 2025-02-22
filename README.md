@@ -26,6 +26,29 @@ AWS(EC2, RDS)
 <details>
 <summary>열기</summary>
 
+## branch rule
+<table border="1">
+  <thead>
+    <tr>
+      <th>Type</b></th>
+      <th>Description</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>main</td>
+      <td>최종 배포 버전의 코드가 유지되는 브랜치</td>            
+    </tr>
+    <tr>
+      <td>feature</td>
+      <td>새로운 기능 개발을 위한 독립적인 브랜치로, 개발 후 main에 병합</td>            
+    </tr>
+  </tbody>
+</table>
+
+GitHub Flow 전략을 선택하게 되었다.<br><br>
+이 전략을 선택한 이유는 브랜치 구조와 규칙이 직관적이고 간단하여 소규모 개인 사이드 프로젝트에 적합하다. 또한, PR 방식의 자동화 시스템이 release 브랜치 역할을 대체할 수 있어, CI/CD를 활용한 자동화된 배포와 결합하면 더 유연하고 효율적인 개발이 가능하다.
+
 ## commit rule
 <table border="1">
   <thead>
@@ -36,7 +59,7 @@ AWS(EC2, RDS)
   </thead>
   <tbody>
     <tr>
-      <td><b>feat</b></td>
+      <td><b>feature</b></td>
       <td>새로운 기능 추가</td>      
     </tr>
     <tr>
@@ -44,24 +67,8 @@ AWS(EC2, RDS)
       <td>버그 수정</td>      
     </tr>
     <tr>
-      <td><b>style</b></td>
-      <td>코드 포맷, 세미 콜론(;) 누락, 코드 변경이 없는 경우</td>      
-    </tr>
-    <tr>
-      <td><b>refactor</b></td>
-      <td>코드 리팩토링</td>      
-    </tr>
-    <tr>
       <td><b>test</b></td>
-      <td>테스트 코드, 리팩토링 테스트 코드 추가</td>      
-    </tr>
-    <tr>
-      <td><b>chore</b></td>
-      <td>빌드 업무 수정, 패키지 매니저 수</td>      
-    </tr>
-     <tr>
-      <td><b>docs</b></td>
-      <td>문서 수정</td>      
+      <td>테스트 코드</td>      
     </tr>
   </tbody>
 </table>
@@ -80,24 +87,6 @@ AWS(EC2, RDS)
       <td>feat</td>
       <td>#01</td>      
       <td>기능 구현</td>      
-    </tr>
-  </tbody>
-</table>
-
-## branch rule
-<table border="1">
-  <thead>
-    <tr>
-      <th>Type</b></th>
-      <th>Issue Number</b></th>
-      <th>Description</th>      
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>feat</td>
-      <td>#01</td>      
-      <td>mainpage</td>      
     </tr>
   </tbody>
 </table>
