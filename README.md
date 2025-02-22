@@ -1,7 +1,7 @@
 ## 소개
 이 프로젝트는 GitHub Actions를 활용해 CI/CD 파이프라인을 자동화하고, 로그인 기능을 구현한 후, JWT 토큰과 OAuth 2.0 인증 방식을 Spring Security와 결합하여 안전한 인증 및 인가 시스템을 구축하는 것을 목표로 한다.
 
-## 프로젝트 목표
+## 목표
 - GitHub Actions를 활용한 CI/CD 파이프라인 구축
 - Spring MVC와 Thymeleaf를 활용한 웹 애플리케이션 개발
 - 사용자 등록(회원가입) 및 로그인 기능 구현
@@ -43,7 +43,7 @@
 
 ## ERD
 
-## 컨벤션
+## 규칙
 <details>
 <summary>열기</summary>
 
