@@ -40,11 +40,18 @@
 </table>
 
 ## 목업
-![image](https://github.com/user-attachments/assets/093e476e-9f60-46d2-958a-599f24564de3)
-![image](https://github.com/user-attachments/assets/7ba1eb55-f38a-4e08-84c9-ec90ec8cc08c)
+<details>
+  <summary>열기</summary>
+    <img src="https://github.com/user-attachments/assets/093e476e-9f60-46d2-958a-599f24564de3" style="width: 50%; height: auto">  
+    <img src="https://github.com/user-attachments/assets/7ba1eb55-f38a-4e08-84c9-ec90ec8cc08c" style="width: 50%; height: auto">
+    
+</details>
 
 ## ERD
-![CI_CD-Auth-Project](https://github.com/user-attachments/assets/23b51f1c-d4ef-4b3f-a8ea-21ed87ba4c39)  
+<details>
+  <summary>열기</summary>
+    <img src="https://github.com/user-attachments/assets/23b51f1c-d4ef-4b3f-a8ea-21ed87ba4c39" style="width: 50%; height: auto">
+</details>
 
 ## 규칙
 <details>
