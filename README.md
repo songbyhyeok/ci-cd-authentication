@@ -1,4 +1,6 @@
 ## 소개
+![Image](https://github.com/user-attachments/assets/02e1be0a-19c9-44f4-9c22-52e76f718a8e)  
+
 이 프로젝트는 GitHub Actions를 활용해 CI/CD 파이프라인을 자동화하고, 로그인 기능을 구현한 후, JWT 토큰과 OAuth 2.0 인증 방식을 Spring Security와 결합하여 안전한 인증 및 인가 시스템을 구축하는 것을 목표로 한다.
 
 ## 목표
