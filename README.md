@@ -3,7 +3,7 @@
 
 ## 목표
 - GitHub Actions를 활용한 CI/CD 파이프라인 구축
-- Spring MVC와 Thymeleaf를 활용한 웹 애플리케이션 개발
+- Spring Thymeleaf, RESTFul을 활용한 웹 애플리케이션 개발
 - 사용자 등록(회원가입) 및 로그인 기능 구현
 - JWT 토큰과 OAuth 2.0 인증 방식을 Spring Security와 결합하여 인증 및 인가 시스템을 구현
 
@@ -12,7 +12,7 @@
 <table border="1">
   <tr>
     <td>Java 17(Gradle)</td>
-    <td>Spring(Boot, MVC, Security)</td>
+    <td>Spring(Boot, Security)</td>
     <td>JPA</td>
     <td>MySQL</td>
   </tr>
@@ -42,6 +42,8 @@
 ## 목업
 
 ## ERD
+![CI_CD-Auth-Project](https://github.com/user-attachments/assets/23b51f1c-d4ef-4b3f-a8ea-21ed87ba4c39)  
+
 
 ## 규칙
 <details>
