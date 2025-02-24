@@ -57,7 +57,7 @@
 <details>
 <summary>열기</summary>
 
-## branch rule
+### branch rule
 <table border="1">
   <thead>
     <tr>
@@ -80,7 +80,7 @@
 GitHub Flow 전략을 선택하게 되었다.<br><br>
 이 전략을 선택한 이유는 브랜치 구조와 규칙이 직관적이고 간단하여 소규모 개인 사이드 프로젝트에 적합하다. 또한, PR 방식의 자동화 시스템이 release 브랜치 역할을 대체할 수 있어, CI/CD를 활용한 자동화된 배포와 결합하면 더 유연하고 효율적인 개발이 가능하다.
 
-## commit rule
+### commit rule
 <table border="1">
   <thead>
     <tr>
@@ -104,7 +104,7 @@ GitHub Flow 전략을 선택하게 되었다.<br><br>
   </tbody>
 </table>
 
-### Example
+**Example**  
 <table border="1">
   <thead>
     <tr>
@@ -125,3 +125,11 @@ GitHub Flow 전략을 선택하게 되었다.<br><br>
 </details>
 
 ## 개발일지
+<details>
+<summary>열기</summary>
+<div markdown="1">
+<a href="https://songbyhyeok.github.io/ci-cd-auth-project/project-planning-and-design" target="_blank">1. 프로젝트 기획 및 설계</a>
+</div>
+</details>
+
+
