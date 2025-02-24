@@ -130,7 +130,7 @@ GitHub Flow 전략을 선택하게 되었다.<br><br>
 <details>
 <summary>열기</summary>
 <div markdown="1">
-<a href="https://songbyhyeok.github.io/ci-cd-auth-project/project-planning-and-design" target="_blank">1. 프로젝트 기획 및 설계</a>
+<a href="https://songbyhyeok.github.io/ci-cd-auth-project/project-planning-and-design" target="_blank">1 - 프로젝트 기획 및 설계</a>
 </div>
 </details>
 
