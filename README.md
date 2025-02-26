@@ -87,6 +87,9 @@
   </tbody>
 </table>
 
+### github issue rule
+![image](https://github.com/user-attachments/assets/15aa6f57-a2d2-4f4b-b6f1-a2d9ef80f39c)  
+
 </details>
 
 ## 개발일지
