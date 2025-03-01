@@ -29,27 +29,23 @@ jobs:
 
       - name: Cache
         uses: actions/cache@v4.2.2
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
 
       - name: Set up JDK
         uses: actions/setup-java@v4.7.0
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: 'gradle'
+          cache-dependency-path: | # optional
+            sub-project/*.gradle*
+            sub-project/**/gradle-wrapper.properties
 
       # Gradle Wrapper에 실행 권한 부여
       - name: Give Gradle Wrapper execute permissions
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build
-
+        run: ./gradlew build --no-daemon
 
   # 프로젝트의 의존성 그래프를 생성하고 GitHub에 제출
   # GitHub의 Dependabot이 프로젝트의 모든 의존성을 분석
@@ -77,19 +73,16 @@ jobs:
 
     - name: Cache
       uses: actions/cache@v4.2.2
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
 
     - name: Set up JDK
       uses: actions/setup-java@v4.7.0
       with:
         java-version: '17'
         distribution: 'temurin'
+        cache: 'gradle'
+        cache-dependency-path: | # optional
+          sub-project/*.gradle*
+          sub-project/**/gradle-wrapper.properties
 
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@v4
