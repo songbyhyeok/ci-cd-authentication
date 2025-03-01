@@ -27,9 +27,6 @@ jobs:
           cd ./src/main/resources
           echo "${app_yml}" > application.yml
 
-      - name: Cache
-        uses: actions/cache@v4.2.2
-
       - name: Set up JDK
         uses: actions/setup-java@v4.7.0
         with:
@@ -70,9 +67,6 @@ jobs:
         mkdir -p ./src/main/resources
         cd ./src/main/resources
         echo "${app_yml}" > application.yml
-
-    - name: Cache
-      uses: actions/cache@v4.2.2
 
     - name: Set up JDK
       uses: actions/setup-java@v4.7.0
