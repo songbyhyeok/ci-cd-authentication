@@ -32,14 +32,19 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: 'gradle'
-          cache-dependency-path: | # optional
-            */*.gradle*
-            **/gradle-wrapper.properties
 
       # Gradle Wrapper에 실행 권한 부여
       - name: Give Gradle Wrapper execute permissions
         run: chmod +x gradlew
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
       - name: Build with Gradle
         run: ./gradlew build --no-daemon
@@ -73,10 +78,15 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        cache: 'gradle'
-        cache-dependency-path: | # optional
-          */*.gradle*
-          **/gradle-wrapper.properties
+
+    - uses: actions/cache@v4
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
 
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@v4
