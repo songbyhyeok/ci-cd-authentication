@@ -14,9 +14,11 @@ jobs:
       contents: read
 
     steps:
+      # GitHub Actions 워크플로우의 첫 번째 단계로, 리포지토리에서 최신 소스 코드를 가져와서 후속 작업(빌드, 테스트, 배포 등)을 위해 사용할 수 있도록 준비하는 역할
       - name: Checkout sources
         uses: actions/checkout@v4
 
+      # Spring 애플리케이션 실행을 위한 필수 파일(.yml, .env)을 이식
       - name: Create a yml and env file for the app
         env:
           app_yml: ${{ secrets.APPLICATION_YML }}
@@ -28,12 +30,14 @@ jobs:
           cd ./src/main/resources
           echo "${app_yml}" > application.yml
 
+      # Java 17 (temurin 배포판)을 GitHub Actions 환경에 설치하고 설정하는 역할
       - name: Set up JDK
         uses: actions/setup-java@v4.7.0
         with:
           java-version: '17'
           distribution: 'temurin'
 
+      # Gradle을 자동으로 설치하고 설정하는 데 사용
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
@@ -41,16 +45,17 @@ jobs:
       - name: Give Gradle Wrapper execute permissions
         run: chmod +x gradlew
 
+      # 작업 중에 생성된 파일이나 디렉토리를 캐시하여, 이후에 해당 파일들을 재사용함으로써 빌드 시간을 단축
       - uses: actions/cache@v4
         with:
-          path: |
-            ~/.gradle
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle/wrapper/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+          path: ~/.gradle  # Gradle 캐시 디렉토리
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle/wrapper/gradle-wrapper.properties') }} # 캐시 키
+          restore-keys: | # 캐시 복원 시 사용할 백업 키
+            ${{ runner.os }}-gradle- 
 
+      # Gradle을 사용하여 빌드 실행
       - name: Build with Gradle
-        run: ./gradlew build --no-daemon
+        run: ./gradlew build
 
   # 프로젝트의 의존성 그래프를 생성하고 GitHub에 제출
   # GitHub의 Dependabot이 프로젝트의 모든 의존성을 분석
@@ -60,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build # build 작업이 성공한 후에만 실행
     permissions:
-      contents: write
+      contents: write # 의존성 그래프를 GitHub에 제출하기 위한 쓰기 권한
 
     steps:
     - name: Checkout sources
