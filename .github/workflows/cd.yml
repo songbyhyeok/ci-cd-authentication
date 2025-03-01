@@ -1,4 +1,4 @@
-name: Java CD with Gradle
+name: Java Deployment with Gradle
 
 on:
   workflow_run:
@@ -7,6 +7,9 @@ on:
       - completed
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+
   deploy:
     runs-on: ubuntu-latest
     needs: build  # build 작업이 완료되어야 실행됨
