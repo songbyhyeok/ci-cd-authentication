@@ -21,7 +21,7 @@ jobs:
           app_yml: ${{ secrets.APPLICATION_YML }}
           app_env: ${{ secrets.APPLICATION_ENV_FILE }}
         run: |
-          echo "${app_env}" > ./.application.env
+          echo "${app_env}" > ./.env
 
           mkdir -p ./src/main/resources
           cd ./src/main/resources
