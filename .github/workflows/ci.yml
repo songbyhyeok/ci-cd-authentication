@@ -59,6 +59,13 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
+      #
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v4.6.1
+        with:
+          name: jar-file
+          path: build/libs/*.jar
+
   # 프로젝트의 의존성 그래프를 생성하고 GitHub에 제출
   # GitHub의 Dependabot이 프로젝트의 모든 의존성을 분석
   # 이 프로젝트의 모든 의존성을 분석하여 보안 취약점이 있는 라이브러리를 사용하고 있을 때 알림을 보낸다.
