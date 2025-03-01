@@ -96,9 +96,6 @@ jobs:
       contents: read
 
     steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
-
       # 이전 단계에서 업로드한 빌드 아티팩트를 다운로드하여, 이후 배포나 다른 작업에 사용할 수 있게 준비하는 역할
       - name: Download a Build Artifact
         uses: actions/download-artifact@v4.1.9
