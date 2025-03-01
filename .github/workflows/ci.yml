@@ -16,6 +16,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Create a yml and env file for the app
+        env:
+          app_yml: ${{ secrets.APPLICATION_YML }}
+          app_env: ${{ secrets.APPLICATION_ENV_FILE }}
+        run: |
+          echo "${app_env}" > ./.application.env
+
+          mkdir -p ./src/main/resources
+          cd ./src/main/resources
+          echo "${app_yml}" > application.yml
+
       - name: Cache
         uses: actions/cache@v4.2.2
         with:
