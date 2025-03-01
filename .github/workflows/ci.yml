@@ -34,8 +34,8 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle'
           cache-dependency-path: | # optional
-            ci-cd-authentication/*.gradle*
-            ci-cd-authentication/**/gradle-wrapper.properties
+            */*.gradle*
+            **/gradle-wrapper.properties
 
       # Gradle Wrapper에 실행 권한 부여
       - name: Give Gradle Wrapper execute permissions
@@ -75,8 +75,8 @@ jobs:
         distribution: 'temurin'
         cache: 'gradle'
         cache-dependency-path: | # optional
-          ci-cd-authentication/*.gradle*
-          ci-cd-authentication/**/gradle-wrapper.properties
+          */*.gradle*
+          **/gradle-wrapper.properties
 
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@v4
