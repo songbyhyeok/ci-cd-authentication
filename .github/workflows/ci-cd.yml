@@ -102,3 +102,13 @@ jobs:
         with:
           name: jar-file
           path: build/libs/
+
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v1.2.1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY_PAIR }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            ls -al
