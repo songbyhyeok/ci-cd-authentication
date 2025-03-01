@@ -110,5 +110,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY_PAIR }}
           port: ${{ secrets.SSH_PORT }}
-          script: |
-            ls -al
+
