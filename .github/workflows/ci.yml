@@ -14,7 +14,8 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout sources
+        uses: actions/checkout@v4
 
       - name: Create a yml and env file for the app
         env:
@@ -32,6 +33,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
 
       # Gradle Wrapper에 실행 권한 부여
       - name: Give Gradle Wrapper execute permissions
@@ -60,33 +64,14 @@ jobs:
       contents: write
 
     steps:
-    - uses: actions/checkout@v4
-
-    - name: Create a yml and env file for the app
-      env:
-        app_yml: ${{ secrets.APPLICATION_YML }}
-        app_env: ${{ secrets.APPLICATION_ENV_FILE }}
-      run: |
-        echo "${app_env}" > ./.application.env
-        
-        mkdir -p ./src/main/resources
-        cd ./src/main/resources
-        echo "${app_yml}" > application.yml
+    - name: Checkout sources
+      uses: actions/checkout@v4
 
     - name: Set up JDK
       uses: actions/setup-java@v4.7.0
       with:
         java-version: '17'
         distribution: 'temurin'
-
-    - uses: actions/cache@v4
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
 
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@v4
