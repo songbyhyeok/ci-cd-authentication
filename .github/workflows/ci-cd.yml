@@ -146,5 +146,5 @@ jobs:
             sudo docker rmi -f ${{ secrets.DOCKER_HUB_TAG }}
             
             sudo docker pull ${{ secrets.DOCKER_HUB_TAG }}
-            sudo docker run -d -p 8080:8080 --env-file .env --name ${{ secrets.DOCKER_CONTAINER_NAME }} ${{ secrets.DOCKER_HUB_TAG }}
+            sudo docker run -d -p 8080:8080 --env-file .env ${{ secrets.DOCKER_HUB_TAG }}
             
