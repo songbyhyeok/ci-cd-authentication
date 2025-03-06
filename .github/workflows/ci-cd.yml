@@ -143,7 +143,7 @@ jobs:
             
             sudo docker stop $(docker ps -a -q)
             sudo docker rm -f $(docker ps -a -q)
-            sudo docker rmi -f $(docker images -q)
+            sudo docker rmi -f songbyhyeok/ci-cd-auth
             
             sudo docker pull ${{ secrets.DOCKER_HUB_TAG }}
 #            sudo docker run -d -p 8080:8080 --env-file .env --name ${{ secrets.DOCKER_CONTAINER_NAME }} ${{ secrets.DOCKER_HUB_TAG }}
