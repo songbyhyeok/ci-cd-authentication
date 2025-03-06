@@ -141,10 +141,10 @@ jobs:
             cd /home/ubuntu/ci-cd-authentication
             echo '${{ secrets.APPLICATION_ENV_FILE }}' > .env
             
-            sudo docker stop $(docker ps -a -q)
-            sudo docker rm -f $(docker ps -a -q)
+            sudo docker rm -f ${{ secrets.DOCKER_CONTAINER_NAME }}
             sudo docker rmi -f ${{ secrets.DOCKER_HUB_TAG }}
             
             sudo docker pull ${{ secrets.DOCKER_HUB_TAG }}
-            sudo docker run -d -p 8080:8080 --env-file .env ${{ secrets.DOCKER_HUB_TAG }}
+            docker run -d -p 8080:8080 --env-file .env --name ${{ secrets.DOCKER_CONTAINER_NAME }} ${{ secrets.DOCKER_HUB_TAG }}
+
             
