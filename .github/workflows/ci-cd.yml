@@ -112,6 +112,21 @@ jobs:
       - name: Docker Setup Buildx
         uses: docker/setup-buildx-action@v3.10.0
 
+      - name: Create Dockerfile
+        env:
+          docker_file: ${{ secrets.DOCKER_FILE }}
+        run: |
+            echo "${docker_file}" > ./Dockerfile
+
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v6.15.0
+        with:
+          context: .
+          push: true
+          tags: songbyhyeok/ci-cd-auth:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v1.2.1
         with:
