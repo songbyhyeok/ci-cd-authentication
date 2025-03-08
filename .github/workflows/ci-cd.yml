@@ -140,11 +140,18 @@ jobs:
             mkdir -p /home/ubuntu/ci-cd-authentication
             cd /home/ubuntu/ci-cd-authentication
             echo '${{ secrets.APPLICATION_ENV_FILE }}' > .env
-            
+
+          # 실행 중인 컨테이너를 한 번에 중지하고 삭제하기
             sudo docker rm -f ${{ secrets.DOCKER_CONTAINER_NAME }}
+            #  강제로 이미지 삭제
             sudo docker rmi -f ${{ secrets.DOCKER_HUB_TAG }}
             
-            sudo docker pull ${{ secrets.DOCKER_HUB_TAG }}
+            # 1. 새로운 Docker 컨테이너를 실행
+            # 2. -d 옵션을 통해 백그라운드에서 컨테이너를 실행
+            # 3. -p 8080:8080 옵션을 통해 호스트의 8080 포트를 컨테이너의 8080 포트에 매핑
+            # 4. .env 파일에 정의된 환경 변수들을 컨테이너로 전달
+            # 5. {{ secrets.DOCKER_CONTAINER_NAME }} 에 저장된 비밀 값을 사용하여 컨테이너 이름을 설정
+            # 6. {{ secrets.DOCKER_HUB_TAG }}에 저장된 비밀 값을 사용하여 Docker 이미지를 Docker Hub에서 다운로드하고 이를 기반으로 컨테이너를 실행합니다
             sudo docker run -d -p 8080:8080 --env-file .env --name ${{ secrets.DOCKER_CONTAINER_NAME }} ${{ secrets.DOCKER_HUB_TAG }}
 
             
