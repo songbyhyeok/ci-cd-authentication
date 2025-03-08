@@ -143,8 +143,8 @@ jobs:
 
           # 실행 중인 컨테이너를 한 번에 중지하고 삭제하기
             sudo docker rm -f ${{ secrets.DOCKER_CONTAINER_NAME }}
-            #  강제로 이미지 삭제
-            sudo docker rmi -f ${{ secrets.DOCKER_HUB_TAG }}
+          # 이미지가 존재하는지 확인 후 삭제
+            sudo docker images -q "${{ secrets.DOCKER_HUB_TAG }}" && sudo docker rmi -f "${{ secrets.DOCKER_HUB_TAG }}"
             
             # 1. 새로운 Docker 컨테이너를 실행
             # 2. -d 옵션을 통해 백그라운드에서 컨테이너를 실행
