@@ -100,6 +100,9 @@
     <li>
       <a href="https://songbyhyeok.github.io/ci-cd-auth-project/project-planning-and-design" target="_blank">1 - 프로젝트 기획 및 설계</a>
     </li>
+    <li>
+      <a href="https://songbyhyeok.github.io/ci-cd-auth-project/ci-cd-design/" target="_blank">2 - CI/CD 설계</a>
+    </li>
   </ul>
 </div>
 </details>
