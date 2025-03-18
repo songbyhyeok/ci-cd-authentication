@@ -23,12 +23,14 @@ jobs:
         env:
           app_yml: ${{ secrets.APPLICATION_YML }}
           app_env: ${{ secrets.APPLICATION_ENV_FILE }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          echo "${app_env}" > ./.env
-
+          echo "$app_env" > ./.env
+          echo "ssh_private_key=${{ secrets.SSH_PRIVATE_KEY }}" >> .env
+      
           mkdir -p ./src/main/resources
           cd ./src/main/resources
-          echo "${app_yml}" > application.yml
+          echo "$app_yml" > application.yml
 
       # Java 17 (temurin 배포판)을 GitHub Actions 환경에 설치하고 설정하는 역할
       - name: Set up JDK
