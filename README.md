@@ -23,7 +23,7 @@
   <tr>
     <td>AWS(EC2, RDS)</td>
     <td>GitHub Actions</td>
-    <td>Swagger</td>
+    <td>Postman</td>
     <td>Docker</td>
     <td>Ubuntu</td>
   </tr>
@@ -102,6 +102,9 @@
     </li>
     <li>
       <a href="https://songbyhyeok.github.io/ci-cd-auth-project/ci-cd-design/" target="_blank">2 - CI/CD 설계</a>
+    </li>
+    <li>
+      <a href="https://songbyhyeok.github.io/ci-cd-auth-project/private-rds-issue/" target="_blank">3 - private RDS 접근하기</a>
     </li>
   </ul>
 </div>
