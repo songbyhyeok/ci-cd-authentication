@@ -49,8 +49,8 @@ public class SshTunnelingConfig {
     public int setupSshTunnel() throws JSchException {
         JSch jsch = new JSch();
 
-        log.info("비공개 키 로딩: {}", privateKeyPath);
-        jsch.addIdentity(privateKeyPath);
+        String formattedKey = privateKeyPath.replace("\\n", "\n");
+        jsch.addIdentity("sshKey", formattedKey.getBytes(), null, null);
 
         log.info("SSH 연결 설정: {}:{} (사용자: {})", remoteHost, sshPort, sshUser);
         Session session = jsch.getSession(sshUser, remoteHost, sshPort);

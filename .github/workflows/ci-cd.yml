@@ -23,10 +23,8 @@ jobs:
         env:
           app_yml: ${{ secrets.APPLICATION_YML }}
           app_env: ${{ secrets.APPLICATION_ENV_FILE }}
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           echo "$app_env" > ./.env
-          echo "$ssh_private_key" >> .env
       
           mkdir -p ./src/main/resources
           cd ./src/main/resources
