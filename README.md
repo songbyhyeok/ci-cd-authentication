@@ -30,15 +30,9 @@
 </table>
 
 ## ERD
-<details>
-  <summary>열기</summary>
-    <img src="https://github.com/user-attachments/assets/f6a1915e-1269-4967-b096-920ecd3f1459" style="width: 50%; height: auto">
-</details>
+<img src="https://github.com/user-attachments/assets/f6a1915e-1269-4967-b096-920ecd3f1459" style="width: 50%; height: auto">
 
 ## 규칙
-<details>
-<summary>열기</summary>
-
 ### branch rule
 <table border="1">
   <thead>
@@ -90,27 +84,21 @@
 ### github issue rule
 ![image](https://github.com/user-attachments/assets/15aa6f57-a2d2-4f4b-b6f1-a2d9ef80f39c)  
 
-</details>
-
 ## 개발일지
-<details>
-<summary>열기</summary>
-<div markdown="1">
-  <ul>
-    <li>
-      <a href="https://songbyhyeok.github.io/ci-cd-auth-project/project-planning-and-design" target="_blank">1 - 프로젝트 기획 및 설계</a>
-    </li>
-    <li>
-      <a href="https://songbyhyeok.github.io/ci-cd-auth-project/ci-cd-design/" target="_blank">2 - CI/CD 설계</a>
-    </li>
-    <li>
-      <a href="https://songbyhyeok.github.io/ci-cd-auth-project/private-rds-issue/" target="_blank">3 - private RDS 접근하기</a>
-    </li>
-    <li>
-      <a href="https://songbyhyeok.github.io/ci-cd-auth-project/overview-of-spring-security-structure/" target="_blank">4 - Spring Security 구조, 흐름</a>
-    </li>
-  </ul>
-</div>
-</details>
+<ul>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/project-planning-and-design" target="_blank">1 - 프로젝트 기획 및 설계</a>
+  </li>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/ci-cd-design/" target="_blank">2 - CI/CD 설계</a>
+  </li>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/private-rds-issue/" target="_blank">3 - private RDS 접근하기</a>
+  </li>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/overview-of-spring-security-structure/" target="_blank">4 - Spring Security 구조, 흐름</a>
+  </li>
+</ul>
+
 
 
