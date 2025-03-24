@@ -106,6 +106,9 @@
     <li>
       <a href="https://songbyhyeok.github.io/ci-cd-auth-project/private-rds-issue/" target="_blank">3 - private RDS 접근하기</a>
     </li>
+    <li>
+      <a href="https://songbyhyeok.github.io/ci-cd-auth-project/overview-of-spring-security-structure/" target="_blank">4 - Spring Security 구조, 흐름</a>
+    </li>
   </ul>
 </div>
 </details>
