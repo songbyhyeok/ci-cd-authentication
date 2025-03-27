@@ -30,7 +30,10 @@
 </table>
 
 ## ERD
-<img src="https://github.com/user-attachments/assets/f6a1915e-1269-4967-b096-920ecd3f1459" style="width: 50%; height: auto">
+<img src="https://github.com/user-attachments/assets/f6a1915e-1269-4967-b096-920ecd3f1459" style="width: 50%; height: auto">  
+
+클라이언트는 액세스 토큰을 가지고 있고, 서버는 리프레시 토큰을 보유하는 구조이기 때문에 두 가지 테이블을 설계, <br>
+현재는 임시 설계이므로, JWT 구현 과정에서 계속해서 변경될 예정이다.
 
 ## 규칙
 ### branch rule
@@ -83,6 +86,9 @@
 
 ### github issue rule
 ![image](https://github.com/user-attachments/assets/15aa6f57-a2d2-4f4b-b6f1-a2d9ef80f39c)  
+
+**GitHub Flow** <br>
+이 전략은 브랜치 구조와 규칙이 직관적이고 간단하여 소규모 개인 사이드 프로젝트에 적합하다. 또한, PR 방식의 자동화 시스템이 release 브랜치 역할을 대체할 수 있어, CI/CD를 활용한 자동화된 배포와 결합하면 더 유연하고 효율적인 개발이 가능하다.
 
 ## 개발일지
 <ul>
