@@ -98,6 +98,12 @@
   <li>
     <a href="https://songbyhyeok.github.io/ci-cd-auth-project/overview-of-spring-security-structure/" target="_blank">4 - Spring Security 구조, 흐름</a>
   </li>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/introduction-to-jwt-in-spring-security/" target="_blank">5 - Spring Security에 JWT 도입</a>
+  </li>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/secret-key-and-jwt-issuance-test/" target="_blank">6 - jwt 암호화와 secret key 생성 방법</a>
+  </li>
 </ul>
 
 
