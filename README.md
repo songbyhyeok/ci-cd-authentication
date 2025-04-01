@@ -29,12 +29,6 @@
   </tr>
 </table>
 
-## ERD
-<img src="https://github.com/user-attachments/assets/f6a1915e-1269-4967-b096-920ecd3f1459" style="width: 50%; height: auto">  
-
-클라이언트는 액세스 토큰을 가지고 있고, 서버는 리프레시 토큰을 보유하는 구조이기 때문에 두 가지 테이블을 설계, <br>
-현재는 임시 설계이므로, JWT 구현 과정에서 계속해서 변경될 예정이다.
-
 ## 규칙
 ### branch rule
 <table border="1">
