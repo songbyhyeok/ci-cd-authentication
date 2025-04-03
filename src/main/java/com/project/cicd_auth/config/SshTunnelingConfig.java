@@ -49,6 +49,8 @@ public class SshTunnelingConfig {
     public int setupSshTunnel() throws JSchException {
         JSch jsch = new JSch();
 
+//      SSH 키는 여러 줄 형식이어야 제대로 작동하므로, 이 코드는 원래의 줄바꿈 형식을 복원하는 역할
+//      문자열 내에서 "\n" 문자열을 찾아 실제 줄바꿈 문자인 "\n"으로 대체
         String formattedKey = privateKeyPath.replace("\\n", "\n");
         jsch.addIdentity("sshKey", formattedKey.getBytes(), null, null);
 
