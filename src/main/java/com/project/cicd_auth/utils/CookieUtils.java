@@ -17,12 +17,13 @@ public class CookieUtils {
         return cookie;
     }
 
-    public String findCookie(String cookieName, HttpServletRequest request) {
+    public String findCookie(String cookieName, Cookie[] cookies) {
         String refresh = null;
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals(cookieName)) {
-                refresh = cookie.getValue();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(cookieName)) {
+                    refresh = cookie.getValue();
+                }
             }
         }
 

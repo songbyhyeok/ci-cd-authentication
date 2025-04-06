@@ -26,7 +26,7 @@ public class ReissueController {
     @PostMapping("/reissue")
     public ResponseEntity<?> reissueToken(HttpServletRequest request, HttpServletResponse response) {
         String refresh = null;
-        refresh = cookieUtils.findCookie("refresh", request);
+        refresh = cookieUtils.findCookie("refresh", request.getCookies());
         if (refresh == null) {
             return new ResponseEntity<>("refresh token null", HttpStatus.BAD_REQUEST);
         }
@@ -39,7 +39,7 @@ public class ReissueController {
 
         // 토큰이 refresh인지 확인 (발급시 페이로드에 명시)
         String category = jwtUtil.getCategory(refresh);
-        if (!category.equals("refresh")) {
+        if (!category.equals("Refresh")) {
             return new ResponseEntity<>("invalid refresh token", HttpStatus.BAD_REQUEST);
         }
 
@@ -62,7 +62,7 @@ public class ReissueController {
 
         //response
         response.setHeader("authorization", "Bearer " + newAccess);
-        response.addCookie(cookieUtils.createCookie("refresh", newRefresh, 24 * 60 * 60));
+        response.addCookie(cookieUtils.createCookie("Refresh", newRefresh, 24 * 60 * 60));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -7,6 +7,7 @@ import com.project.cicd_auth.jwt.LoginFilter;
 import com.project.cicd_auth.repository.RefreshRepository;
 import com.project.cicd_auth.service.ReissueService;
 import com.project.cicd_auth.utils.CookieUtils;
+import com.project.cicd_auth.utils.RedisUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,13 +28,15 @@ public class SecurityConfig {
     private final ReissueService reissueService;
     private final RefreshRepository refreshRepository;
     private final CookieUtils cookieUtils;
+    private final RedisUtil redisUtil;
 
-    public SecurityConfig(AuthenticationConfiguration authenticationConfiguration, JWTUtil jwtUtil, ReissueService reissueService, RefreshRepository refreshRepository, CookieUtils cookieUtils) {
+    public SecurityConfig(AuthenticationConfiguration authenticationConfiguration, JWTUtil jwtUtil, ReissueService reissueService, RefreshRepository refreshRepository, CookieUtils cookieUtils, RedisUtil redisUtil) {
         this.authenticationConfiguration = authenticationConfiguration;
         this.jwtUtil = jwtUtil;
         this.reissueService = reissueService;
         this.refreshRepository = refreshRepository;
         this.cookieUtils = cookieUtils;
+        this.redisUtil = redisUtil;
     }
 
     @Bean
@@ -73,10 +76,10 @@ public class SecurityConfig {
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .anyRequest().authenticated());
         http
-                .addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
+                .addFilterBefore(new JWTFilter(jwtUtil, reissueService), LoginFilter.class);
         http
                 .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration), jwtUtil, reissueService, cookieUtils), UsernamePasswordAuthenticationFilter.class);
-        http    .addFilterBefore(new CustomLogoutFilter(jwtUtil, cookieUtils, refreshRepository), LogoutFilter.class);
+        http    .addFilterBefore(new CustomLogoutFilter(jwtUtil, cookieUtils, redisUtil, refreshRepository, reissueService), LogoutFilter.class);
 
         //세션 설정
         http

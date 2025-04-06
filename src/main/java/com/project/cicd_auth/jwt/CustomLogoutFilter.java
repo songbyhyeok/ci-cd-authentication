@@ -1,7 +1,9 @@
 package com.project.cicd_auth.jwt;
 
 import com.project.cicd_auth.repository.RefreshRepository;
+import com.project.cicd_auth.service.ReissueService;
 import com.project.cicd_auth.utils.CookieUtils;
+import com.project.cicd_auth.utils.RedisUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -13,17 +15,22 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.filter.GenericFilterBean;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class CustomLogoutFilter extends GenericFilterBean {
 
     private final JWTUtil jwtUtil;
     private final CookieUtils cookieUtils;
+    private final RedisUtil redisUtil;
     private final RefreshRepository refreshRepository;
+    private final ReissueService reissueService;
 
-    public CustomLogoutFilter(JWTUtil jwtUtil, CookieUtils cookieUtils, RefreshRepository refreshRepository) {
+    public CustomLogoutFilter(JWTUtil jwtUtil, CookieUtils cookieUtils, RedisUtil redisUtil, RefreshRepository refreshRepository, ReissueService reissueService) {
         this.jwtUtil = jwtUtil;
         this.cookieUtils = cookieUtils;
+        this.redisUtil = redisUtil;
         this.refreshRepository = refreshRepository;
+        this.reissueService = reissueService;
     }
 
     @Override
@@ -40,56 +47,40 @@ public class CustomLogoutFilter extends GenericFilterBean {
         // $: 문자열의 끝을 의미
         // requestUri.matches("^\\/logout$")는 requestUri가 /logout 문자열과 정확히 일치하는지 확인
         if (!requestUri.matches("^\\/logout$")) {
-
             filterChain.doFilter(request, response);
             return;
         }
+
         String requestMethod = request.getMethod();
         if (!requestMethod.equals("POST")) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        final String refresh = cookieUtils.findCookie("refresh", request);
-
-        //refresh null check
-        if (refresh == null) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        final String refreshToken = reissueService.findRefreshToken(request, response);
+        if (refreshToken == null) {
+            // filterChain.doFilter(request, response);
             return;
         }
 
-        //expired check
-        try {
-            jwtUtil.isExpired(refresh);
-        } catch (ExpiredJwtException e) {
-            //response status code
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        // Refresh Token을 검증하고 Blacklist에 추가한다.
+        if (reissueService.validateRefreshToken(refreshToken, response)) {
+            final String username = jwtUtil.getUsername(refreshToken);
+            redisUtil.setBlacklistEntries(refreshToken, username, 300000L);
+        } else {
+            // filterChain.doFilter(request, response);
+            System.out.println("Refresh Token이 만료되었습니다.");
             return;
         }
 
-        // 토큰이 refresh인지 확인 (발급시 페이로드에 명시)
-        String category = jwtUtil.getCategory(refresh);
-        if (!category.equals("refresh")) {
-            //response status code
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
+//        if (refreshRepository.existsByRefresh(refresh)) {
+//            refreshRepository.deleteByRefresh(refresh);
+//        } else {
+//            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+//            return;
+//        }
 
-        //DB에 저장되어 있는지 확인
-        Boolean isExist = refreshRepository.existsByRefresh(refresh);
-        if (!isExist) {
-            //response status code
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
-
-        //로그아웃 진행
-        //Refresh 토큰 DB에서 제거
-        refreshRepository.deleteByRefresh(refresh);
-
-        //Refresh 토큰 Cookie 값 0
-        Cookie cookie = cookieUtils.createCookie("refresh", null, 0);
-        response.addCookie(cookie);
+        response.addCookie(cookieUtils.createCookie("Refresh", null, 600000));
         response.setStatus(HttpServletResponse.SC_OK);
     }
 }

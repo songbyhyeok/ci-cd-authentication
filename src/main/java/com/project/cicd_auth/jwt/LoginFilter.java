@@ -55,21 +55,21 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         GrantedAuthority auth = iterator.next();
         String role = auth.getAuthority();
 
-        String access = jwtUtil.createJwt("access", username, role, jwtUtil.getAccessExpiry());
+        final String access = jwtUtil.createJwt("access", username, role, jwtUtil.getAccessExpiry());
 
-        String refresh = null;
-        refresh = cookieUtils.findCookie("refresh", request);
-        if (refresh != null && reissueService.existsByRefresh(refresh)) {
-            reissueService.deleteByRefresh(refresh);
-        }
+//        String refresh = null;
+//        refresh = cookieUtils.findCookie("Refresh", request.getCookies());
+//        if (refresh != null && reissueService.existsByRefresh(refresh)) {
+//            reissueService.deleteByRefresh(refresh);
+//        }
 
-        refresh = jwtUtil.createJwt("refresh", username, role, jwtUtil.getRefreshExpiry());
+        final String refresh = jwtUtil.createJwt("refresh", username, role, jwtUtil.getRefreshExpiry());
 
         //Refresh 토큰 저장
-        reissueService.addRefreshEntity(username, refresh, jwtUtil.getRefreshExpiry());
+        // reissueService.addRefreshEntity(username, refresh, jwtUtil.getRefreshExpiry());
 
-        response.setHeader("authorization", "Bearer " + access);
-        response.addCookie(cookieUtils.createCookie("refresh", refresh, 24 * 60 * 60));
+        response.setHeader("Authorization", "Bearer " + access);
+        response.addCookie(cookieUtils.createCookie("Refresh", refresh, 24 * 60 * 60));
         response.setStatus(HttpStatus.OK.value());
     }
 
