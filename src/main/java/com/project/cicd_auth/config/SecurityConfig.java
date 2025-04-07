@@ -76,10 +76,11 @@ public class SecurityConfig {
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .anyRequest().authenticated());
         http
-                .addFilterBefore(new JWTFilter(jwtUtil, reissueService), LoginFilter.class);
+                .addFilterAfter(new JWTFilter(jwtUtil, reissueService), LoginFilter.class);
         http
-                .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration), jwtUtil, reissueService, cookieUtils), UsernamePasswordAuthenticationFilter.class);
-        http    .addFilterBefore(new CustomLogoutFilter(jwtUtil, cookieUtils, redisUtil, refreshRepository, reissueService), LogoutFilter.class);
+                .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration), jwtUtil, reissueService, cookieUtils, redisUtil), UsernamePasswordAuthenticationFilter.class);
+        http
+                .addFilterBefore(new CustomLogoutFilter(jwtUtil, cookieUtils, redisUtil, refreshRepository, reissueService), LogoutFilter.class);
 
         //세션 설정
         http

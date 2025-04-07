@@ -59,28 +59,22 @@ public class CustomLogoutFilter extends GenericFilterBean {
 
         final String refreshToken = reissueService.findRefreshToken(request, response);
         if (refreshToken == null) {
-            // filterChain.doFilter(request, response);
-            return;
+            PrintWriter writer = response.getWriter();
+            writer.print("refresh token is null");
         }
 
-        // Refresh Token을 검증하고 Blacklist에 추가한다.
+        // Refresh Token을 검증하고 Redis에서 제거, Blacklist에 추가한다.
         if (reissueService.validateRefreshToken(refreshToken, response)) {
             final String username = jwtUtil.getUsername(refreshToken);
+            redisUtil.delete(username);
             redisUtil.setBlacklistEntries(refreshToken, username, 300000L);
         } else {
-            // filterChain.doFilter(request, response);
-            System.out.println("Refresh Token이 만료되었습니다.");
-            return;
+            PrintWriter writer = response.getWriter();
+            writer.print("refresh Token이 만료되었습니다.");
         }
-
-//        if (refreshRepository.existsByRefresh(refresh)) {
-//            refreshRepository.deleteByRefresh(refresh);
-//        } else {
-//            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-//            return;
-//        }
 
         response.addCookie(cookieUtils.createCookie("Refresh", null, 600000));
         response.setStatus(HttpServletResponse.SC_OK);
+        filterChain.doFilter(request, response);
     }
 }

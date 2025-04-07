@@ -2,6 +2,7 @@ package com.project.cicd_auth.jwt;
 
 import com.project.cicd_auth.service.ReissueService;
 import com.project.cicd_auth.utils.CookieUtils;
+import com.project.cicd_auth.utils.RedisUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -24,12 +25,14 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     private final JWTUtil jwtUtil;
     private final ReissueService reissueService;
     private final CookieUtils cookieUtils;
+    private final RedisUtil redisUtil;
 
-    public LoginFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil, ReissueService reissueService, CookieUtils cookieUtils) {
+    public LoginFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil, ReissueService reissueService, CookieUtils cookieUtils, RedisUtil redisUtil) {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
         this.reissueService = reissueService;
         this.cookieUtils = cookieUtils;
+        this.redisUtil = redisUtil;
     }
 
     @Override
@@ -55,21 +58,26 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         GrantedAuthority auth = iterator.next();
         String role = auth.getAuthority();
 
-        final String access = jwtUtil.createJwt("access", username, role, jwtUtil.getAccessExpiry());
+        // Redis에 Refresh Token이 이미 있다면 Redis에서 삭제 후에 아직 만료 기간이 남아있다면 Blacklist에 추가한다.
+        if (redisUtil.hasKey(username)) {
+            final String refreshToken = redisUtil.get(username);
+            redisUtil.delete(username);
 
-//        String refresh = null;
-//        refresh = cookieUtils.findCookie("Refresh", request.getCookies());
-//        if (refresh != null && reissueService.existsByRefresh(refresh)) {
-//            reissueService.deleteByRefresh(refresh);
-//        }
+            if (reissueService.validateRefreshToken(refreshToken, response)) {
+                redisUtil.setBlacklistEntries(refreshToken, username, 300000L);
+            } else {
+                System.out.println("Refresh Token이 만료되었습니다.");
+            }
+        }
 
-        final String refresh = jwtUtil.createJwt("refresh", username, role, jwtUtil.getRefreshExpiry());
+        // 새로운 Access와 Refresh Token을 발급한다.
+        final String newAccess = jwtUtil.createJwt("access", username, role, jwtUtil.getAccessExpiry());
+        final String newRefresh = jwtUtil.createJwt("refresh", username, role, jwtUtil.getRefreshExpiry());
 
-        //Refresh 토큰 저장
-        // reissueService.addRefreshEntity(username, refresh, jwtUtil.getRefreshExpiry());
+        redisUtil.set(username, newRefresh, 300000L);
 
-        response.setHeader("Authorization", "Bearer " + access);
-        response.addCookie(cookieUtils.createCookie("Refresh", refresh, 24 * 60 * 60));
+        response.setHeader("Authorization", "Bearer " + newAccess);
+        response.addCookie(cookieUtils.createCookie("Refresh", newRefresh, 24 * 60 * 60));
         response.setStatus(HttpStatus.OK.value());
     }
 

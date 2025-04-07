@@ -34,7 +34,7 @@ public class ReissueService {
             return false;
         }
 
-        if (replayAttack(refreshToken, response)) {
+        if (rejectReplayAttack(refreshToken, response)) {
             return false;
         }
 
@@ -74,19 +74,12 @@ public class ReissueService {
             return false;
         }
 
-//        if (!existsByRefresh(refreshToken)) {
-//            PrintWriter writer = response.getWriter();
-//            writer.print("invalid refresh token");
-//            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-//            return false;
-//        }
-
         return true;
     }
 
-    private boolean replayAttack(final String refreshToken, HttpServletResponse response) {
+    private boolean rejectReplayAttack(final String refreshToken, HttpServletResponse response) {
         // 블랙리스트에 추가된 Refresh Token인지 확인한다.
-        String refreshTokenTest = "eyJhbGciOiJIUzI1NiJ9.eyJjYXRlZ29yeSI6InJlZnJlc2giLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IlJPTEVfQURNSU4iLCJpYXQiOjE3NDM5MTQyMDYsImV4cCI6MTc0MzkxNDgwNn0.rqDxA3TSeWdJNKEBUOoOf0bmtnehvYmvS27MZHCMnfE";
+        String refreshTokenTest = "eyJhbGciOiJIUzI1NiJ9.eyJjYXRlZ29yeSI6InJlZnJlc2giLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IlJPTEVfQURNSU4iLCJpYXQiOjE3NDM5MTQ3MTEsImV4cCI6MTc0MzkxNTMxMX0.lcEdN0UfrzUdE5KkvKY3bGM0N1Wdcx8Hbo1W_d1nLtA";
         if (redisUtil.hasKeyBlacklistEntries(refreshTokenTest)) {
             // Replay Attack 감지
             // 두 가지 경우로 나뉜다.
@@ -115,7 +108,8 @@ public class ReissueService {
         final String username = jwtUtil.getUsername(refreshToken);
         final String role = jwtUtil.getRole(refreshToken);
 
-        // 이전 Refresh Token을 Redis의 Blacklist에 추가한다.
+        // 이전 Refresh Token을 Redis에서 제거, Blacklist에 추가한다.
+        redisUtil.delete(username);
         redisUtil.setBlacklistEntries(refreshToken, username, 300000L);
 
         String newAccess = jwtUtil.createJwt("access", username, role, jwtUtil.getAccessExpiry());
@@ -124,11 +118,6 @@ public class ReissueService {
         // 새로 생성된 Refresh Token은 Redis에서 관리한다.
         redisUtil.set(username, newRefresh, 300000L);
 
-        //Refresh 토큰 저장 DB에 기존의 Refresh 토큰 삭제 후 새 Refresh 토큰 저장
-//        deleteByRefresh(refreshToken);
-//        addRefreshEntity(username, newRefresh, jwtUtil.getRefreshExpiry());
-
-        //response
         response.setHeader("Authorization", "Bearer " + newAccess);
         response.addCookie(cookieUtils.createCookie("Refresh", newRefresh, 24 * 60 * 60));
     }
