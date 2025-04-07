@@ -99,10 +99,19 @@
     <a href="https://songbyhyeok.github.io/ci-cd-auth-project/overview-of-spring-security-structure/" target="_blank">4 - Spring Security 구조, 흐름</a>
   </li>
   <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/introduction-to-jwt-in-spring-security/" target="_blank">5 - Spring Security에 JWT 도입</a>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/secret-key-and-jwt-issuance-test/" target="_blank">5 - jwt 암호화와 secret key 생성 방법</a>
   </li>
   <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/secret-key-and-jwt-issuance-test/" target="_blank">6 - jwt 암호화와 secret key 생성 방법</a>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/why-did-i-use-jwt-tokens/" target="_blank">6 - 왜 JWT 토큰을 사용했을까?</a>
+  </li>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/access-token-and-refresh-token/" target="_blank">7 - Access Token과 Refresh Token</a>
+  </li>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/access-token-and-refresh-token-flow/" target="_blank">8 - Access Token과 Refresh Token 동작 흐름</a>
+  </li>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/implementation-of-jwt-security-system-using-access-token-and-refresh-token/" target="_blank">9 - Access Token과 Refresh Token을 사용한 JWT 보안 시스템 구현</a>
   </li>
 </ul>
 
