@@ -10,11 +10,17 @@ GitHub Actions를 활용하여 CI/CD 파이프라인을 자동화하고, Spring 
 
 <br>
 
-## Diagram
+## Structure Diagram
 <img src="/images/2025-03-09-ci-cd-design-1.png" alt="empty"
+                    style="width: 70%; height: auto;">
+<img src="/images/2025-03-23-overview of spring security structure-2.png" alt="empty"
                     style="width: 70%; height: auto;">
 
 <br>
+
+## Flowchart
+<img src="/images/2025-04-07-implementation of jwt security system using access token and refresh token - 1.png" alt="empty"
+                    style="width: 70%; height: auto;">
 
 ## 기술 스택
 ### Back-end
