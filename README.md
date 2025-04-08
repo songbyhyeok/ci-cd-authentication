@@ -1,18 +1,29 @@
 ![Image](https://github.com/user-attachments/assets/02e1be0a-19c9-44f4-9c22-52e76f718a8e)  
 
-GitHub Actions를 활용하여 CI/CD 파이프라인을 자동화하고, Spring Security와 JWT 토큰 인증 방식을 결합하여 안전한 인증 및 인가 시스템을 구축하는 것을 목표로 한다.
+GitHub Actions를 활용하여 CI/CD 파이프라인을 자동화하고, Spring Security와 JWT 토큰 인증 방식을 결합하여 안전한 인증 및 인가 보안 시스템을 제공한다.
 
 <br>
 
 ## 목표
 - GitHub Actions를 활용한 CI/CD 파이프라인 구축
-- Spring Security와 RESTful API를 활용한 JWT 인증 시스템 구현
+- Spring Security와 RESTful API를 활용한 JWT 인증 시스템
+  - Access Token과 Refresh Token을 사용한 JWT 보안 시스템 구현
+  - Refresh Token Rotation + Redis 구현
+  - Blacklist와 ReplayAttack 감지 구현
 
 <br>
 
-## Diagram
+## Structure Diagram
 <img src="/images/2025-03-09-ci-cd-design-1.png" alt="empty"
-                    style="width: 70%; height: auto;">
+                    style="width: 80%; height: auto;">
+<img src="/images/2025-03-23-overview of spring security structure-2.png" alt="empty"
+                    style="width: 100%; height: auto;">
+
+<br>
+
+## Flowchart Diagram
+<img src="/images/2025-04-07-implementation of jwt security system using access token and refresh token - 1.png" alt="empty"
+                    style="width: 100%; height: auto;">
 
 <br>
 
@@ -41,7 +52,7 @@ GitHub Actions를 활용하여 CI/CD 파이프라인을 자동화하고, Spring 
 
 <br>
 
-## Structure
+## Directory Structure
 ```
 +---main
 |   +---java
