@@ -14,10 +14,6 @@ public class MainController {
 
     @GetMapping("/")
     public String mainP() {
-
-
-        redisUtil.set("hi", "1234", 300000L);
-
         return "main Controller";
     }
 }
