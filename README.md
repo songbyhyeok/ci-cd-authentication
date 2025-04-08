@@ -22,6 +22,8 @@ GitHub Actions를 활용하여 CI/CD 파이프라인을 자동화하고, Spring 
 <img src="/images/2025-04-07-implementation of jwt security system using access token and refresh token - 1.png" alt="empty"
                     style="width: 100%; height: auto;">
 
+<br>
+
 ## 기술 스택
 ### Back-end
 <table border="1">
