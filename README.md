@@ -12,7 +12,7 @@ GitHub Actions를 활용하여 CI/CD 파이프라인을 자동화하고, Spring 
 
 ## Diagram
 <img src="/images/2025-03-09-ci-cd-design-1.png" alt="empty"
-                    style="width: 60%; height: auto;">
+                    style="width: 70%; height: auto;">
 
 <br>
 
