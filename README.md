@@ -1,11 +1,20 @@
-## 소개
 ![Image](https://github.com/user-attachments/assets/02e1be0a-19c9-44f4-9c22-52e76f718a8e)  
 
-이 프로젝트는 GitHub Actions를 활용하여 CI/CD 파이프라인을 자동화하고, Spring Security와 JWT 토큰 인증 방식을 결합하여 안전한 인증 및 인가 시스템을 구축하는 것을 목표로 한다.
+GitHub Actions를 활용하여 CI/CD 파이프라인을 자동화하고, Spring Security와 JWT 토큰 인증 방식을 결합하여 안전한 인증 및 인가 시스템을 구축하는 것을 목표로 한다.
+
+<br>
 
 ## 목표
 - GitHub Actions를 활용한 CI/CD 파이프라인 구축
 - Spring Security와 RESTful API를 활용한 JWT 인증 시스템 구현
+
+<br>
+
+## Diagram
+<img src="/images/2025-03-09-ci-cd-design-1.png" alt="empty"
+                    style="width: 60%; height: auto;">
+
+<br>
 
 ## 기술 스택
 ### Back-end
@@ -15,6 +24,7 @@
     <td>Spring(Boot, Security)</td>
     <td>JPA</td>
     <td>MySQL</td>
+    <td>Redis</td>
   </tr>
 </table>
 
@@ -28,6 +38,65 @@
     <td>Ubuntu</td>
   </tr>
 </table>
+
+<br>
+
+## Structure
+```
++---main
+|   +---java
+|   |   \---com
+|   |       \---project
+|   |           \---cicd_auth
+|   |               |   CicdAuthApplication.java
+|   |               |
+|   |               +---config
+|   |               |       DataSourceConfig.java
+|   |               |       RedisConfig.java
+|   |               |       SecurityConfig.java
+|   |               |       SshTunnelingConfig.java
+|   |               |
+|   |               +---controller
+|   |               |       AdminController.java
+|   |               |       JoinController.java
+|   |               |       MainController.java
+|   |               |       ReissueController.java
+|   |               |
+|   |               +---dto
+|   |               |       CustomUserDetails.java
+|   |               |       JoinDTO.java
+|   |               |
+|   |               +---entity
+|   |               |       Member.java
+|   |               |       RefreshEntity.java
+|   |               |
+|   |               +---jwt
+|   |               |       CustomLogoutFilter.java
+|   |               |       JWTFilter.java
+|   |               |       JWTUtil.java
+|   |               |       LoginFilter.java
+|   |               |
+|   |               +---repository
+|   |               |       MemberRepository.java
+|   |               |       RefreshRepository.java
+|   |               |
+|   |               +---service
+|   |               |       CustomUserDetailsService.java
+|   |               |       JoinService.java
+|   |               |       ReissueService.java
+|   |               |
+|   |               \---utils
+|   |                       CookieUtils.java
+|   |                       RedisUtil.java
+|   |
+|   \---resources
+|       |   application.yml
+|       |
+|       +---static
+|       \---templates
+```
+
+<br>
 
 ## 규칙
 ### branch rule
@@ -81,8 +150,10 @@
 ### github issue rule
 ![image](https://github.com/user-attachments/assets/15aa6f57-a2d2-4f4b-b6f1-a2d9ef80f39c)  
 
-**GitHub Flow** <br>
+* **GitHub Flow** <br>
 이 전략은 브랜치 구조와 규칙이 직관적이고 간단하여 소규모 개인 사이드 프로젝트에 적합하다. 또한, PR 방식의 자동화 시스템이 release 브랜치 역할을 대체할 수 있어, CI/CD를 활용한 자동화된 배포와 결합하면 더 유연하고 효율적인 개발이 가능하다.
+
+<br>
 
 ## 개발일지
 <ul>
