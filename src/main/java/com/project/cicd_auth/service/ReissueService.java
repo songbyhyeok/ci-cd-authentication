@@ -80,13 +80,13 @@ public class ReissueService {
     private boolean rejectReplayAttack(final String refreshToken, HttpServletResponse response) {
         // 블랙리스트에 추가된 Refresh Token인지 확인한다.
         String refreshTokenTest = "eyJhbGciOiJIUzI1NiJ9.eyJjYXRlZ29yeSI6InJlZnJlc2giLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IlJPTEVfQURNSU4iLCJpYXQiOjE3NDM5MTQ3MTEsImV4cCI6MTc0MzkxNTMxMX0.lcEdN0UfrzUdE5KkvKY3bGM0N1Wdcx8Hbo1W_d1nLtA";
-        if (redisUtil.hasKeyBlacklistEntries(refreshTokenTest)) {
+        if (redisUtil.hasKeyBlacklistEntries(refreshToken)) {
             // Replay Attack 감지
             // 두 가지 경우로 나뉜다.
             // 1. 클라이언트가 재발급을 마친 상태에서, 이미 이전에 해커가 클라이언트의 토큰을 탈취한 다음 재발급을 신청한 경우
             // 2. 해커가 클라이언트의 토큰을 탈취 후에 재발급을 마친 상태에서 클라이언트가 재발급을 신청한 경우
             // 서버는 재발급 대상자를 식별할 수 없으므로, 이미 재발급된 토큰은 블랙리스트에 추가하고, 현재 재발급은 무효 처리한다.
-            final String userInfo = redisUtil.getBlacklistEntries(refreshTokenTest);
+            final String userInfo = redisUtil.getBlacklistEntries(refreshToken);
             if (redisUtil.hasKey(userInfo)) {
                 final String issuedRefreshToken = redisUtil.get(userInfo);
                 if (issuedRefreshToken != null) {
