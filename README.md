@@ -193,7 +193,7 @@ GitHub Actions를 활용하여 CI/CD 파이프라인을 자동화하고, Spring 
     <a href="https://songbyhyeok.github.io/ci-cd-auth-project/access-token-and-refresh-token-flow/" target="_blank">8 - Access Token과 Refresh Token 동작 흐름</a>
   </li>
   <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/implementation-of-jwt-security-system-using-access-token-and-refresh-token/" target="_blank">9 -Refresh Token Rotation, Blacklist, ReplayAttack 감지 시스템 구현</a>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/refresh-token-rotation-blacklist-implementation-replay-attack-detection-system/" target="_blank">9 -Refresh Token Rotation, Blacklist, ReplayAttack 감지 시스템 구현</a>
   </li>
 </ul>
 
