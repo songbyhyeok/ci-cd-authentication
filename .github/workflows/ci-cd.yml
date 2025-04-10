@@ -138,6 +138,9 @@ jobs:
             mkdir -p /home/ubuntu/ci-cd-authentication
             cd /home/ubuntu/ci-cd-authentication
             echo '${{ secrets.APPLICATION_ENV_FILE }}' > .env
+            echo '${{ secrets.DOCKER_FILE }}' > .dockerfile
+            echo '${{ secrets.DOCKER_HUB_TAG }}' > .dockerhubtag
+            echo '${{ secrets.DOCKER_CONTAINER_NAME }}' > .containername
 
             sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
             sudo docker rm -f ${{ secrets.DOCKER_CONTAINER_NAME }}
