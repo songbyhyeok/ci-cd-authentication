@@ -139,6 +139,7 @@ jobs:
             cd /home/ubuntu/ci-cd-authentication
             echo '${{ secrets.APPLICATION_ENV_FILE }}' > .env
             echo '${{ secrets.HOST }}' > .sshhost
+            echo '${{ secrets.USERNAME }}' > .sshusername
 
             sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
             sudo docker rm -f ${{ vars.DOCKER_CONTAINER_NAME }}
