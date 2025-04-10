@@ -142,5 +142,4 @@ jobs:
 
             docker compose down
             docker compose up -d
-            rm -rf .env
-            rm -rf docker_compose.yml
+           
