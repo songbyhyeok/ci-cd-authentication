@@ -130,20 +130,15 @@ jobs:
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v1.2.1
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ 22 }}
           script: |
             mkdir -p /home/ubuntu/ci-cd-authentication
             cd /home/ubuntu/ci-cd-authentication
             echo '${{ secrets.APPLICATION_ENV_FILE }}' > .env
-            echo '${{ secrets.HOST }}' > .sshhost
-            echo '${{ secrets.USERNAME }}' > .sshusername
+            echo '${{ vars.DOCKER_COMPOSE_YML }}' > docker_compose.yml
 
-            sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
-            sudo docker rm -f ${{ vars.DOCKER_CONTAINER_NAME }}
-            sudo docker images -q "${{ vars.DOCKER_HUB_TAG }}" && sudo docker rmi -f "${{ vars.DOCKER_HUB_TAG }}"
-            sudo docker run -d -p 8080:8080 --env-file .env --name ${{ vars.DOCKER_CONTAINER_NAME }} ${{ vars.DOCKER_HUB_TAG }}
-
-            
+            docker compose down
+            docker compose up -d
