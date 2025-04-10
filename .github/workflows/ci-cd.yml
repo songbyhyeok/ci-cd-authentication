@@ -138,7 +138,8 @@ jobs:
             mkdir -p /home/ubuntu/ci-cd-authentication
             cd /home/ubuntu/ci-cd-authentication
             echo '${{ secrets.APPLICATION_ENV_FILE }}' > .env
-            echo '${{ vars.DOCKER_COMPOSE_YML }}' > docker_compose.yml
+            echo '${{ vars.DOCKER_COMPOSE_YML }}' > docker-compose.yml
 
-           
+            docker compose down
+            docker compose up -d
            
