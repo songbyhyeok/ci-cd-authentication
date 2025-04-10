@@ -140,6 +140,5 @@ jobs:
             echo '${{ secrets.APPLICATION_ENV_FILE }}' > .env
             echo '${{ vars.DOCKER_COMPOSE_YML }}' > docker_compose.yml
 
-            docker compose down
-            docker compose up -d
+           
            
