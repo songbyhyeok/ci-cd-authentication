@@ -114,7 +114,7 @@ jobs:
 
       - name: Create Dockerfile
         env:
-          docker_file: ${{ secrets.DOCKER_FILE }}
+          docker_file: ${{ vars.DOCKER_FILE }}
         run: |
             echo "${docker_file}" > ./Dockerfile
 
@@ -138,13 +138,10 @@ jobs:
             mkdir -p /home/ubuntu/ci-cd-authentication
             cd /home/ubuntu/ci-cd-authentication
             echo '${{ secrets.APPLICATION_ENV_FILE }}' > .env
-            echo '${{ secrets.DOCKER_FILE }}' > .dockerfile
-            echo '${{ secrets.DOCKER_HUB_TAG }}' > .dockerhubtag
-            echo '${{ secrets.DOCKER_CONTAINER_NAME }}' > .containername
 
             sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
-            sudo docker rm -f ${{ secrets.DOCKER_CONTAINER_NAME }}
-            sudo docker images -q "${{ secrets.DOCKER_HUB_TAG }}" && sudo docker rmi -f "${{ secrets.DOCKER_HUB_TAG }}"
-            sudo docker run -d -p 8080:8080 --env-file .env --name ${{ secrets.DOCKER_CONTAINER_NAME }} ${{ secrets.DOCKER_HUB_TAG }}
+            sudo docker rm -f ${{ vars.DOCKER_CONTAINER_NAME }}
+            sudo docker images -q "${{ vars.DOCKER_HUB_TAG }}" && sudo docker rmi -f "${{ vars.DOCKER_HUB_TAG }}"
+            sudo docker run -d -p 8080:8080 --env-file .env --name ${{ vars.DOCKER_CONTAINER_NAME }} ${{ vars.DOCKER_HUB_TAG }}
 
             
