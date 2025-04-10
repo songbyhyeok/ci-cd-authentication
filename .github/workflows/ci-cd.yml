@@ -25,7 +25,7 @@ jobs:
           app_env: ${{ secrets.APPLICATION_ENV_FILE }}
         run: |
           echo "$app_env" > ./.env
-      
+          
           mkdir -p ./src/main/resources
           cd ./src/main/resources
           echo "$app_yml" > application.yml
@@ -77,17 +77,17 @@ jobs:
       contents: write # 의존성 그래프를 GitHub에 제출하기 위한 쓰기 권한
 
     steps:
-    - name: Checkout sources
-      uses: actions/checkout@v4
+      - name: Checkout sources
+        uses: actions/checkout@v4
 
-    - name: Set up JDK
-      uses: actions/setup-java@v4.7.0
-      with:
-        java-version: '17'
-        distribution: 'temurin'
+      - name: Set up JDK
+        uses: actions/setup-java@v4.7.0
+        with:
+          java-version: '17'
+          distribution: 'temurin'
 
-    - name: Generate and submit dependency graph
-      uses: gradle/actions/dependency-submission@v4
+      - name: Generate and submit dependency graph
+        uses: gradle/actions/dependency-submission@v4
 
   deploy:
     runs-on: ubuntu-latest
@@ -116,7 +116,7 @@ jobs:
         env:
           docker_file: ${{ vars.DOCKER_FILE }}
         run: |
-            echo "${docker_file}" > ./Dockerfile
+          echo "${docker_file}" > ./Dockerfile
 
       - name: Build and push Docker images
         uses: docker/build-push-action@v6.15.0
@@ -142,4 +142,3 @@ jobs:
 
             docker compose down
             docker compose up -d
-           
