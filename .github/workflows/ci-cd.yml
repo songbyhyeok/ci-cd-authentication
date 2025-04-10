@@ -133,7 +133,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ 22 }}
+          port: 22
           script: |
             mkdir -p /home/ubuntu/ci-cd-authentication
             cd /home/ubuntu/ci-cd-authentication
