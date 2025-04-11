@@ -4,7 +4,7 @@ GitHub Actions를 활용하여 CI/CD 파이프라인을 자동화하고, Spring 
 
 <br>
 
-## 목표
+## Development
 - GitHub Actions를 활용한 CI/CD 파이프라인 구축
 - Spring Security와 RESTful API를 활용한 JWT 인증 시스템
   - Access Token과 Refresh Token을 사용한 JWT 보안 시스템 구현
