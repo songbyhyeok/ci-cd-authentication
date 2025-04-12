@@ -13,6 +13,39 @@ GitHub Actions를 활용하여 CI/CD 파이프라인을 자동화하고, Spring 
 
 <br>
 
+## 개발일지
+<ul>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/project-planning-and-design" target="_blank">1 - 프로젝트 기획 및 설계</a>
+  </li>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/ci-cd-design/" target="_blank">2 - CI/CD 설계</a>
+  </li>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/private-rds-issue/" target="_blank">3 - private RDS 접근하기</a>
+  </li>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/overview-of-spring-security-structure/" target="_blank">4 - Spring Security 구조, 흐름</a>
+  </li>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/secret-key-and-jwt-issuance-test/" target="_blank">5 - jwt 암호화와 secret key 생성 방법</a>
+  </li>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/why-did-i-use-jwt-tokens/" target="_blank">6 - 왜 JWT 토큰을 사용했을까?</a>
+  </li>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/access-token-and-refresh-token/" target="_blank">7 - Access Token과 Refresh Token</a>
+  </li>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/access-token-and-refresh-token-flow/" target="_blank">8 - Access Token과 Refresh Token 동작 흐름</a>
+  </li>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/refresh-token-rotation-blacklist-implementation-replay-attack-detection-system/" target="_blank">9 -Refresh Token Rotation, Blacklist, ReplayAttack 감지 시스템 구현</a>
+  </li>
+</ul>
+
+<br>
+
 ## Structure Diagram
 <img src="/images/2025-03-09-ci-cd-design-1.png" alt="empty"
                     style="width: 80%; height: auto;">
@@ -106,39 +139,6 @@ GitHub Actions를 활용하여 CI/CD 파이프라인을 자동화하고, Spring 
 |       +---static
 |       \---templates
 ```
-
-<br>
-
-## 개발일지
-<ul>
-  <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/project-planning-and-design" target="_blank">1 - 프로젝트 기획 및 설계</a>
-  </li>
-  <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/ci-cd-design/" target="_blank">2 - CI/CD 설계</a>
-  </li>
-  <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/private-rds-issue/" target="_blank">3 - private RDS 접근하기</a>
-  </li>
-  <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/overview-of-spring-security-structure/" target="_blank">4 - Spring Security 구조, 흐름</a>
-  </li>
-  <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/secret-key-and-jwt-issuance-test/" target="_blank">5 - jwt 암호화와 secret key 생성 방법</a>
-  </li>
-  <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/why-did-i-use-jwt-tokens/" target="_blank">6 - 왜 JWT 토큰을 사용했을까?</a>
-  </li>
-  <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/access-token-and-refresh-token/" target="_blank">7 - Access Token과 Refresh Token</a>
-  </li>
-  <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/access-token-and-refresh-token-flow/" target="_blank">8 - Access Token과 Refresh Token 동작 흐름</a>
-  </li>
-  <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/refresh-token-rotation-blacklist-implementation-replay-attack-detection-system/" target="_blank">9 -Refresh Token Rotation, Blacklist, ReplayAttack 감지 시스템 구현</a>
-  </li>
-</ul>
 
 <br>
 
