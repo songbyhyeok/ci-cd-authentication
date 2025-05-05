@@ -14,6 +14,6 @@ public class MainController {
 
     @GetMapping("/")
     public String mainP() {
-        return "main Controller";
+        return "CI/CD Authentication";
     }
 }
