@@ -165,4 +165,3 @@ jobs:
             fi
 
             rm -rf .env
-            rm -rf docker-compose.yml
