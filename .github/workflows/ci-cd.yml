@@ -22,6 +22,7 @@ jobs:
       - name: Create a yml and env file for the app
         env:
           app_yml: ${{ vars.APPLICATION_YML }}
+          app_prod_yml: ${{ vars.APPLICATION_PROD_YML }}
           app_env: ${{ secrets.APPLICATION_ENV_FILE }}
         run: |
           echo "$app_env" > ./.env
@@ -29,6 +30,7 @@ jobs:
           mkdir -p ./src/main/resources
           cd ./src/main/resources
           echo "$app_yml" > application.yml
+          echo "$app_prod_yml" > application-prod.yml
 
       # Java 17 (temurin 배포판)을 GitHub Actions 환경에 설치하고 설정하는 역할
       - name: Set up JDK
