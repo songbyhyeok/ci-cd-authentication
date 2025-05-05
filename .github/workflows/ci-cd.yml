@@ -156,15 +156,13 @@ jobs:
             cd /home/ubuntu/ci-cd-authentication
             echo '${{ secrets.APPLICATION_ENV_FILE }}' > .env
 
-            DOCKER_COMPOSE_FILE="docker-compose.yml"
-
             if [ $env.TARGET_UPSTREAM = green ]; then
-                echo "$vars.DOCKER_COMPOSE_GREEN_YML" > $DOCKER_COMPOSE_FILE
+              echo "$vars.DOCKER_COMPOSE_GREEN_YML" > docker-compose.yml
+              docker compose up -d
             else
-                echo "$vars.DOCKER_COMPOSE_BLUE_YML" > $DOCKER_COMPOSE_FILE
+              echo "$vars.DOCKER_COMPOSE_BLUE_YML" > docker-compose.yml
+              docker compose up -d
             fi
 
-            docker compose up -d
-            
             rm -rf .env
-            rm -rf $DOCKER_COMPOSE_FILE
+            rm -rf docker-compose.yml
