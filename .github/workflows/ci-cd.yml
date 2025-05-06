@@ -152,7 +152,6 @@ jobs:
               echo '${{ vars.DOCKER_COMPOSE_BLUE_YML }}' > docker-compose.yml
             fi
 
-            docker pull songbyhyeok/ci-cd-auth:latest
             docker compose up -d
 
             rm -rf docker-compose.yml
@@ -161,22 +160,9 @@ jobs:
       - name: Check the deployed service URL
         uses: jtalk/url-health-check-action@v4
         with:
-          # Check the following URLs one by one sequentially
           url: http://${{ secrets.SERVER_HOST }}:${{ env.STOPPED_PORT }}/env
-          # Follow redirects, or just report success on 3xx status codes
-          follow-redirect: false # Optional, defaults to "false"
-          # Fail this action after this many failed attempts
           max-attempts: 5 # Optional, defaults to 1
-          # Delay between retries
           retry-delay: 10s # Optional, only applicable to max-attempts > 1
-          # Retry all errors, including 404. This option might trigger curl upgrade.
-          retry-all: false # Optional, defaults to "false"
-          # String representation of cookie attached to health check request.
-          # Format: `Name=Value`
-          cookie: empty # Optional, default is empty
-          # Basic auth login password pair.
-          # Format: `login:password`
-          basic-auth: empty # Optional, default is empty
 
       - name: Change nginx upstream
         uses: appleboy/ssh-action@v1.2.1
