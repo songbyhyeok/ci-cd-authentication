@@ -147,17 +147,15 @@ jobs:
             echo '${{ secrets.APPLICATION_ENV_FILE }}' > .env
 
             if [ '${{ env.TARGET_UPSTREAM }}' = green ]; then 
-              echo '${{ vars.DOCKER_COMPOSE_GREEN_YML }}' > docker-compose-green.yml
-              docker compose -f docker-compose-green.yml up -d --pull always
-              rm -rf docker-compose-green.yml
+              echo '${{ vars.DOCKER_COMPOSE_GREEN_YML }}' > docker-compose.yml
             else
-              echo '${{ vars.DOCKER_COMPOSE_BLUE_YML }}' > docker-compose-blue.yml
-              docker compose -f docker-compose-blue.yml up -d --pull always
-              rm -rf docker-compose-blue.yml
+              echo '${{ vars.DOCKER_COMPOSE_BLUE_YML }}' > docker-compose.yml
             fi
             
+            docker compose up -d --pull always
+            
+            rm -rf docker-compose.yml
             rm -rf .env
-            docker rmi songbyhyeok/ci-cd-auth
 
       - name: Check the deployed service URL
         uses: jtalk/url-health-check-action@v4
