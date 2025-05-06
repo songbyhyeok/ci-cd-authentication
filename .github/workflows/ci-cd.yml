@@ -115,16 +115,15 @@ jobs:
         # -> GitHub Actions에서 비밀 주소로 된 서버에 요청을 보내고, 
         # 서버가 살아있는지 확인하기 위해 HTTP 응답 코드를 STATUS 변수에 저장하는 코드
         run: | 
-          STATUS=$(curl -o /dev/null -w "%{http_code}" "http://${{ secrets.SERVER_HOST }}")
+          STATUS=$(curl -o /dev/null -w "%{http_code}" "http://${{ secrets.SERVER_HOST }}/env")
           echo $STATUS
           if [ $STATUS = 200 ]; then
-            CURRENT_UPSTREAM=$(curl -s "http://${{ secrets.SERVER_HOST }}")
+            CURRENT_UPSTREAM=$(curl -s "http://${{ secrets.SERVER_HOST }}/env")
           else
             CURRENT_UPSTREAM=green
           fi
           
           echo CURRENT_UPSTREAM=$CURRENT_UPSTREAM >> $GITHUB_ENV
-          echo $CURRENT_UPSTREAM
           if [ $CURRENT_UPSTREAM = green ]; then
             echo "CURRENT_PORT=8080 >> $GITHUB_ENV
             echo "STOPPED_PORT=8081 >> $GITHUB_ENV
@@ -158,6 +157,26 @@ jobs:
 
             rm -rf docker-compose.yml
             rm -rf .env
+
+      - name: Check the deployed service URL
+        uses: jtalk/url-health-check-action@v4
+        with:
+          # Check the following URLs one by one sequentially
+          url: http://${{ secrets.SERVER_HOST }}:${{ env.STOPPED_PORT }}/env
+          # Follow redirects, or just report success on 3xx status codes
+          follow-redirect: false # Optional, defaults to "false"
+          # Fail this action after this many failed attempts
+          max-attempts: 10 # Optional, defaults to 1
+          # Delay between retries
+          retry-delay: 10s # Optional, only applicable to max-attempts > 1
+          # Retry all errors, including 404. This option might trigger curl upgrade.
+          retry-all: false # Optional, defaults to "false"
+          # String representation of cookie attached to health check request.
+          # Format: `Name=Value`
+          cookie: empty # Optional, default is empty
+          # Basic auth login password pair.
+          # Format: `login:password`
+          basic-auth: empty # Optional, default is empty
 
       - name: Change nginx upstream
         uses: appleboy/ssh-action@v1.2.1
