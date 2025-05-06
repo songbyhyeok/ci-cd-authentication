@@ -1,0 +1,76 @@
+spring:
+  profiles:
+    active: green
+    group:
+      local: local, common, dev
+      green: green, common, prod
+      blue: blue, common, prod
+
+server:
+  env: green
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+
+server:
+  name: local_server
+  host: localhost
+  port: 8080
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: green
+
+server:
+  name: green_server
+  host: ${SERVER_HOST}
+  port: 8080
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: blue
+
+server:
+  name: blue_server
+  host: ${SERVER_HOST}
+  port: 8081
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: common
+    import: optional:file:.env[.properties]
+
+  ssh:
+    remote_jump_host: ${SSH_HOST}
+    user: ${SSH_USER}
+    ssh_port: 22
+    private_key: ${SSH_PRIVATE_KEY}
+    database_url: ${RDS_ENDPOINT}
+    database_port: ${RDS_PORT}
+
+  security:
+    user:
+      name: ${SECURITY_NAME}
+      password: ${SECURITY_PWD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
