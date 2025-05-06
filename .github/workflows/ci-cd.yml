@@ -148,11 +148,11 @@ jobs:
 
             if [ '${{ env.TARGET_UPSTREAM }}' = green ]; then 
               echo '${{ vars.DOCKER_COMPOSE_GREEN_YML }}' > docker-compose-green.yml
-              docker compose docker-compose-green.yml up -d --pull always
+              docker compose -f docker-compose-green.yml up -d --pull always
               rm -rf docker-compose-green.yml
             else
               echo '${{ vars.DOCKER_COMPOSE_BLUE_YML }}' > docker-compose-blue.yml
-              docker compose docker-compose-blue.yml up -d --pull always
+              docker compose -f docker-compose-blue.yml up -d --pull always
               rm -rf docker-compose-blue.yml
             fi
             
