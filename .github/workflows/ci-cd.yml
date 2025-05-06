@@ -153,5 +153,3 @@ jobs:
               echo '${{ vars.DOCKER_COMPOSE_BLUE_YML }}' > docker-compose.yml
               docker compose up -d
             fi
-
-            rm -rf .env
