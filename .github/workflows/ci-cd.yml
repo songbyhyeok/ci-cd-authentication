@@ -175,7 +175,7 @@ jobs:
           # 2. 지정된 경로 service_url에 TARGET_UPSTREAM 값 대입
           # 3. 설정을 수정한 후, nginx를 다시 로드해 변경 사항을 적용
           script: |
-            docker exec -it my-nginx bash -c 'echo "set \$service_url ${{ env.TARGET_UPSTREAM }};" > /etc/nginx/conf.d/service-env.inc && nginx -s reload'
+            docker exec -i my-nginx bash -c 'echo "set \$service_url ${{ env.TARGET_UPSTREAM }};" > /etc/nginx/conf.d/service-env.inc && nginx -s reload'
 
       - name: Stop current Server
         uses: appleboy/ssh-action@v1.2.1
@@ -187,3 +187,4 @@ jobs:
           script: |
             docker stop ${{ env.CURRENT_UPSTREAM }}
             docker rm ${{ env.CURRENT_UPSTREAM }}
+            docker image prune -a -f
