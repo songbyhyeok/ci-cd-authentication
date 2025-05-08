@@ -51,10 +51,10 @@ GitHub Actions를 활용해 CI/CD 파이프라인을 자동화하고, Nginx를 �
 <br>
 
 ## Structure Diagram
-<img src="/images/zero-downtime-deployment.png" alt="empty"
-                    style="width: 60%; height: auto;">
 <img src="/images/2025-03-09-ci-cd-design-1.png" alt="empty"
                     style="width: 80%; height: auto;">
+<img src="/images/zero-downtime-deployment.png" alt="empty"
+                    style="width: 60%; height: auto;">
 <img src="/images/2025-03-23-overview of spring security structure-2.png" alt="empty"
                     style="width: 100%; height: auto;">
 
