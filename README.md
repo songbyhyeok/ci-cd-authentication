@@ -1,6 +1,6 @@
 ![Image](https://github.com/user-attachments/assets/02e1be0a-19c9-44f4-9c22-52e76f718a8e)  
 
-GitHub Actions를 활용해 CI/CD 파이프라인을 자동화하고, Nginx를 기반으로 한 Blue/Green 무중단 배포 전략을 적용하며, Spring Security와 JWT 토큰 인증 방식을 결합하여 안전한 인증 및 인가 보안 시스템을 제공한다.
+CI/CD 파이프라인을 자동화하고, 무중단 배포 전략을 적용하며, 토큰 인증 방식을 결합하여 안전한 인증 및 인가 보안 시스템을 제공한다.
 
 <br>
 
