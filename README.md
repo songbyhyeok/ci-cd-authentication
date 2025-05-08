@@ -17,34 +17,34 @@ CI/CD 파이프라인을 자동화하고, 무중단 배포 전략을 적용하�
 ## 개발일지
 <ul>
   <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/project-planning-and-design" target="_blank">1 - 프로젝트 기획 및 설계</a>
+    <a href="https://songbyhyeok.github.io/ci-cd-zero-downtime-auth/project-planning-and-design" target="_blank">1 - 프로젝트 기획 및 설계</a>
   </li>
   <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/ci-cd-design/" target="_blank">2 - CI/CD 설계</a>
+    <a href="https://songbyhyeok.github.io/ci-cd-zero-downtime-auth/ci-cd-design/" target="_blank">2 - CI/CD 설계</a>
   </li>
   <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/private-rds-issue/" target="_blank">3 - private RDS 접근하기</a>
+    <a href="https://songbyhyeok.github.io/ci-cd-zero-downtime-auth/private-rds-issue/" target="_blank">3 - private RDS 접근하기</a>
   </li>
   <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/overview-of-spring-security-structure/" target="_blank">4 - Spring Security 구조, 흐름</a>
+    <a href="https://songbyhyeok.github.io/ci-cd-zero-downtime-auth/overview-of-spring-security-structure/" target="_blank">4 - Spring Security 구조, 흐름</a>
   </li>
   <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/secret-key-and-jwt-issuance-test/" target="_blank">5 - jwt 암호화와 secret key 생성 방법</a>
+    <a href="https://songbyhyeok.github.io/ci-cd-zero-downtime-auth/secret-key-and-jwt-issuance-test/" target="_blank">5 - jwt 암호화와 secret key 생성 방법</a>
   </li>
   <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/why-did-i-use-jwt-tokens/" target="_blank">6 - 왜 JWT 토큰을 사용했을까?</a>
+    <a href="https://songbyhyeok.github.io/ci-cd-zero-downtime-auth/why-did-i-use-jwt-tokens/" target="_blank">6 - 왜 JWT 토큰을 사용했을까?</a>
   </li>
   <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/access-token-and-refresh-token/" target="_blank">7 - Access Token과 Refresh Token</a>
+    <a href="https://songbyhyeok.github.io/ci-cd-zero-downtime-auth/access-token-and-refresh-token/" target="_blank">7 - Access Token과 Refresh Token</a>
   </li>
   <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/access-token-and-refresh-token-flow/" target="_blank">8 - Access Token과 Refresh Token 동작 흐름</a>
+    <a href="https://songbyhyeok.github.io/ci-cd-zero-downtime-auth/access-token-and-refresh-token-flow/" target="_blank">8 - Access Token과 Refresh Token 동작 흐름</a>
   </li>
   <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/refresh-token-rotation-blacklist-implementation-replay-attack-detection-system" target="_blank">9 -Refresh Token Rotation, Blacklist, ReplayAttack 감지 시스템 구현</a>
+    <a href="https://songbyhyeok.github.io/ci-cd-zero-downtime-auth/refresh-token-rotation-blacklist-implementation-replay-attack-detection-system" target="_blank">9 -Refresh Token Rotation, Blacklist, ReplayAttack 감지 시스템 구현</a>
   </li>
   <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/building-zero-downtime-deployment-with-nginx" target="_blank">10 - Nginx를 활용한 무중단 배포 구축기</a>
+    <a href="https://songbyhyeok.github.io/ci-cd-zero-downtime-auth/building-zero-downtime-deployment-with-nginx" target="_blank">10 - Nginx를 활용한 무중단 배포 구축기</a>
   </li>
 </ul>
 
