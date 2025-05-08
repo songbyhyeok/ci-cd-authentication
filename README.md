@@ -1,10 +1,11 @@
 ![Image](https://github.com/user-attachments/assets/02e1be0a-19c9-44f4-9c22-52e76f718a8e)  
 
-GitHub Actions를 활용하여 CI/CD 파이프라인을 자동화하고, Spring Security와 JWT 토큰 인증 방식을 결합하여 안전한 인증 및 인가 보안 시스템을 제공한다.
+GitHub Actions를 활용해 CI/CD 파이프라인을 자동화하고, Nginx를 기반으로 한 Blue/Green 무중단 배포 전략을 적용하며, Spring Security와 JWT 토큰 인증 방식을 결합하여 안전한 인증 및 인가 보안 시스템을 제공한다.
 
 <br>
 
 ## Development
+- Nginx를 활용한 Blue/Green 방식의 전략적 무중단 배포 구축
 - GitHub Actions를 활용한 CI/CD 파이프라인 구축
 - Spring Security와 RESTful API를 활용한 JWT 인증 시스템
   - Access Token과 Refresh Token을 사용한 JWT 보안 시스템 구현
@@ -40,13 +41,18 @@ GitHub Actions를 활용하여 CI/CD 파이프라인을 자동화하고, Spring 
     <a href="https://songbyhyeok.github.io/ci-cd-auth-project/access-token-and-refresh-token-flow/" target="_blank">8 - Access Token과 Refresh Token 동작 흐름</a>
   </li>
   <li>
-    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/refresh-token-rotation-blacklist-implementation-replay-attack-detection-system/" target="_blank">9 -Refresh Token Rotation, Blacklist, ReplayAttack 감지 시스템 구현</a>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/refresh-token-rotation-blacklist-implementation-replay-attack-detection-system" target="_blank">9 -Refresh Token Rotation, Blacklist, ReplayAttack 감지 시스템 구현</a>
+  </li>
+  <li>
+    <a href="https://songbyhyeok.github.io/ci-cd-auth-project/building-zero-downtime-deployment-with-nginx" target="_blank">10 - Nginx를 활용한 무중단 배포 구축기</a>
   </li>
 </ul>
 
 <br>
 
 ## Structure Diagram
+<img src="/images/zero-downtime-deployment.png" alt="empty"
+                    style="width: 80%; height: auto;">
 <img src="/images/2025-03-09-ci-cd-design-1.png" alt="empty"
                     style="width: 80%; height: auto;">
 <img src="/images/2025-03-23-overview of spring security structure-2.png" alt="empty"
@@ -102,6 +108,7 @@ GitHub Actions를 활용하여 CI/CD 파이프라인을 자동화하고, Spring 
 |   |               |
 |   |               +---controller
 |   |               |       AdminController.java
+|   |               |       HealthCheckController.java
 |   |               |       JoinController.java
 |   |               |       MainController.java
 |   |               |       ReissueController.java
@@ -134,10 +141,16 @@ GitHub Actions를 활용하여 CI/CD 파이프라인을 자동화하고, Spring 
 |   |                       RedisUtil.java
 |   |
 |   \---resources
-|       |   application.yml
-|       |
-|       +---static
-|       \---templates
+|           application-dev.yml
+|           application-prod.yml
+|           application.yml
+|
+\---test
+    \---java
+        \---com
+            \---project
+                \---cicd_auth
+                        CicdAuthApplicationTests.java
 ```
 
 <br>
