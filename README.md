@@ -71,21 +71,11 @@ GitHub Actions를 활용해 CI/CD 파이프라인을 자동화하고, Nginx를 �
 <table border="1">
   <tr>
     <td>Java 17(Gradle)</td>
-    <td>Spring(Boot, Security)</td>
-    <td>JPA</td>
-    <td>MySQL</td>
-    <td>Redis</td>
-  </tr>
-</table>
-
-### DevOps
-<table border="1">
-  <tr>
-    <td>AWS(EC2, RDS)</td>
-    <td>GitHub Actions</td>
+    <td>Spring(Boot, Security, JPA)</td>
+    <td>CI/CD(GitHub Actions, AWS(EC2, RDS), Ubuntu, Docker, Redis, Nginx)</td>
+    <td>MySQL 8.0</td>
+    <td>RESTful API</td>
     <td>Postman</td>
-    <td>Docker</td>
-    <td>Ubuntu</td>
   </tr>
 </table>
 
